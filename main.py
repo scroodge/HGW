@@ -213,15 +213,13 @@ def main():
         # Check if the cookie is still valid, if not, get a new one and retry the request
         if response.status_code == 401:  # Unauthorized
             print('WROMG SESSION COOKIE GETTING NEW ONE')
-            time.sleep(60)
             session_cookie = get_session_cookie()
             if session_cookie:
                 save_session_cookie(session_cookie)
                 print('NEW SESSION COOKIE SAVED')
-                time.sleep(60)
 
-        # print('SAVE DEVICE ID')
-        # save_deviceId(response.text)
+        print('SAVE DEVICE ID')
+        save_deviceId(response.text)
         deviceId = load_deviceId()
         print('DEVICE ID', deviceId)
         route_data = route_list(session_cookie)
